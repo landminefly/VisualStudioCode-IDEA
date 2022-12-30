@@ -28,22 +28,22 @@
 			};
 			var obj = { fun4 };
 			//就算把它放到对象obj内并通过obj来调用也是如此
-			obj.fun4(); //window
+			obj.fun4(); //window，如果fun4不是箭头函数，应该输出obj
 			//就算使用apply()调用也是如此
-			fun4.apply(obj); //window
+			fun4.apply(obj); //window，如果fun4不是箭头函数，应该输出obj
 
 			//该函数fun6在函数作用域fun5中声明
-			//因此该函数的this值永远与fun5的this值相同
+			//因此该函数的this值永远与该函数声明时fun5的this值相同
 			var obj2 = {
 				fun5() {
 					var fun6 = () => console.log(this);
-					fun6();
+					return fun6;
 				},
 			};
-			obj2.fun5(); //obj2
-			obj2.fun5.apply(window); //window
-			//这里看似fun6的this值变了，其实不然
-			//注意每执行一次fun5就会创建一个新的fun6对象，每个fun6对象的this值仍是不变的
+			//fun6声明时，fun5的this值是obj2，因此fun6的this永远指向obj2
+			var fun6 = obj2.fun5();
+			//就算把它拿出来直接调用也是如此
+			fun6(); //obj2，如果fun6不是箭头函数，应该输出window
 		</script>
 	</body>
 </html>
