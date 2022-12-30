@@ -1,0 +1,36 @@
+[{
+    "files.associations": 
+    {
+        "system.h": "c"
+    }
+},
+
+{                       //Cmake
+    "cmake.cmakePath": "/path/to/cmake"
+},
+
+{                                   //Bracket Pair Colorizer 2
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active"
+},
+
+{                                       //Error Lens
+    "errorLens.gutterIconsEnabled": true,//在行号的左边显示小错误图标（个人喜好）
+    "errorLens.fontStyleItalic": true//使错误信息的字体为斜体（个人喜好）
+},
+
+{                                     //CodeRunner
+    "code-runner.runInTerminal": true,//在控制台运行代码，防止乱码和不能输入
+    "code-runner.saveFileBeforeRun": true, //运行前自动保存
+    "code-runner.customCommand": " cls",//这使Ctrl+Alt+K这个快捷键可以快速清空控制台内容
+    "code-runner.respectShebang": false,//我是Windows系统所以不需要按shebang来运行
+    "code-runner.ignoreSelection": true,//禁用“运行选中部分的代码”功能（个人喜好，感觉这个功能很鸡肋）
+    //需要注意的是，所有命令前都有一个空格，用来“喂给”上一次运行结尾的“请按任意键继续. . .”
+},
+
+{
+    "polacode.target": "snippet"//代码截图：去除生成的代码段图片周围的碍眼边框
+}
+            //在卸载background-cover后记得使用Fix VSCode Checksums来修复受损的VScode
+
+]
