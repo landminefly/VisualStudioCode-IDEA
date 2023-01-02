@@ -9,7 +9,7 @@
 	<body>
 		<script>
 			class Obj1 {
-                //当 a instanceOf b 时，就会调用b中的该方法（若有），并把a作为参数传入
+				//当 a instanceOf b 时，就会调用b中的该方法（若有），并把a作为参数传入
 				static [Symbol.hasInstance](arg) {
 					if (arg === Obj2) {
 						return true;
@@ -17,19 +17,19 @@
 					return false;
 				}
 
-                //当 str.replace(b) 时，就会调用b中的该方法（若有），并把str作为参数传入
-                static [Symbol.replace](arg){
-                    return `111${arg}111`;
-                }
+				//当 str.replace(b) 时，就会调用b中的该方法（若有），并把str作为参数传入
+				static [Symbol.replace](arg) {
+					return `111${arg}111`;
+				}
 			}
 
 			class Obj2 {}
 
-            //本来 Obj2 根本不是 Obj1 的实例，但根据Obj1中的对应方法，还是返回了true
+			//本来Obj2根本不是Obj1的实例，但根据Obj1中的对应方法，还是返回了true
 			console.log(Obj2 instanceof Obj1); //true
-            //Obj1不是正则对象或字符串，因此本来这里的replace并不会有结果
-            //但根据Obj1中的对应方法，还是返回了111222111
-            console.log("222".replace(Obj1))
+			//Obj1不是正则对象或字符串，因此这里的replace本来并不会有结果
+			//但根据Obj1中的对应方法，还是返回了111222111
+			console.log("222".replace(Obj1));
 		</script>
 	</body>
 </html>
