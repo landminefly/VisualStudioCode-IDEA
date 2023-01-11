@@ -2,7 +2,7 @@ package test12_1;
 
 import java.util.Arrays;
 
-public class SparseArray {
+public class SparseArrayTest {
     public static void main(String[] args) {
 
         //先准备一个二维数组，它的大部分元素值都是5
