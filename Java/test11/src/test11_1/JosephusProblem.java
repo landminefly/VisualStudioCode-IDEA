@@ -49,8 +49,8 @@ public class JosephusProblem {
             }
             order.add(temp.id);
             //注意，删除节点时，temp也要后移
-            beforeTemp.next = temp;
             temp = temp.next;
+            beforeTemp.next = temp;
         }
         //再将最终剩下的节点id记录下来，并返回
         order.add(temp.id);
