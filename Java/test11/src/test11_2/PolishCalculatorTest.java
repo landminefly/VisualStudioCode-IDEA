@@ -15,7 +15,6 @@ class PolishCalculator {
     ArrayList<String> reverseExpression;
     int num1;
     int num2;
-    String operation;
 
     private ArrayList<String> transferToList(String express) {
         ArrayList<String> expression = new ArrayList<>();
