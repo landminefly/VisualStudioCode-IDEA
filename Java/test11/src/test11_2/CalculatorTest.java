@@ -84,7 +84,7 @@ class Calculator {
 
     //主要方法，调用该方法，并传入一个字符串形式的中缀表达式，就能返回结果
     public int solve(String express) {
-        //先将中缀表达式转换为集合形式
+        //先将字符串形式的中缀表达式转换为集合形式
         expression = transferToList(express);
         numStack = new Stack<Integer>();
         operStack = new Stack<String>();
