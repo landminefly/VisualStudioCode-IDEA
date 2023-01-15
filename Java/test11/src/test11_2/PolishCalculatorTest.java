@@ -6,7 +6,7 @@ import java.util.Stack;
 public class PolishCalculatorTest {
     public static void main(String[] args) {
         PolishCalculator polishCalculator = new PolishCalculator();
-        System.out.println(polishCalculator.solve("(3+4)*7"));
+        System.out.println(polishCalculator.solve(" ( 4 + 4 ) * 7 "));
     }
 }
 
@@ -53,7 +53,7 @@ class PolishCalculator {
                     reverseExpression.add(operStack.pop());
                 }
                 operStack.pop();
-            } else if (isOperation(item) && returnPriority(item) <= returnPriority(operStack.peek())) {
+            } else {
                 while (!(operStack.empty() || operStack.peek().equals("(") || returnPriority(item) > returnPriority(operStack.peek()))) {
                     reverseExpression.add(operStack.pop());
                 }
