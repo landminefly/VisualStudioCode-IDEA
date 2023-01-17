@@ -5,7 +5,7 @@ public class EightQueenTest {
         int[] position = new int[8];
         Queen queen = new Queen(position);
         queen.startSolve();
-        System.out.println(queen.count);
+        System.out.println("解法共有:"+queen.count+"种");
     }
 }
 
