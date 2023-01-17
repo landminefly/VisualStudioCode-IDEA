@@ -2,7 +2,7 @@ package test11_3;
 
 public class EightQueenTest {
     public static void main(String[] args) {
-        int[] position = new int[4];
+        int[] position = new int[8];
         Queen queen = new Queen(position);
         queen.startSolve();
         System.out.println(queen.count);
