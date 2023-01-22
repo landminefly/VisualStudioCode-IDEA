@@ -16,6 +16,9 @@ public class RadixSortTest {
 }
 
 class RadixSort {
+    public static int[][] buckets;
+    public static int[] bucketCounts;
+
     public static void sortInOrder(int[] arr) {
         int max = arr[0];
         for (int i : arr) {
@@ -25,8 +28,8 @@ class RadixSort {
         }
         int topDigit = ("" + max).length();
 
-        int[][] buckets = new int[10][arr.length];
-        int[] bucketCounts = new int[10];
+        buckets = new int[10][arr.length];
+        bucketCounts = new int[10];
 
         for (int i = 0, k = 1; i < topDigit; i++, k *= 10) {
             for (int j = 0; j < arr.length; j++) {
