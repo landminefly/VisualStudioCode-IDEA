@@ -22,6 +22,10 @@ class QuickSort {
     public static void startSortInOrder(int[] arr) {
         sortInOrder(arr, 0, arr.length - 1);
     }
+    /**
+     * @param left 表示该部分的首元素在原数组中的下标
+     * @param right 表示该部分的末元素在原数组中的下标
+     */
     public static void sortInOrder(int[] arr, int left, int right) {
         //如果这个部分只有一个元素或没有元素，则结束这部分的递归
         if (left >= right) {
