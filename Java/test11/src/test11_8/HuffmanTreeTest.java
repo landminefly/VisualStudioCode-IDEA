@@ -14,18 +14,18 @@ public class HuffmanTreeTest {
 }
 
 class HuffmanTree {
-    public HuffmanNode root;
+    public Node root;
 
     public HuffmanTree(int[] arr) {
-        ArrayList<HuffmanNode> nodes = new ArrayList<>();
+        ArrayList<Node> nodes = new ArrayList<>();
         for (int i : arr) {
-            nodes.add(new HuffmanNode(i));
+            nodes.add(new Node(i));
         }
         while (nodes.size() > 1) {
             Collections.sort(nodes);
-            HuffmanNode leftNode = nodes.get(0);
-            HuffmanNode rightNode = nodes.get(1);
-            HuffmanNode parent = new HuffmanNode(leftNode.weight + rightNode.weight);
+            Node leftNode = nodes.get(0);
+            Node rightNode = nodes.get(1);
+            Node parent = new Node(leftNode.weight + rightNode.weight);
             parent.left = leftNode;
             parent.right = rightNode;
             nodes.remove(0);
@@ -65,10 +65,10 @@ class HuffmanTree {
     }
 }
 
-class HuffmanNode implements Comparable<HuffmanNode> {
+class Node implements Comparable<Node> {
     public int weight;
-    public HuffmanNode left;
-    public HuffmanNode right;
+    public Node left;
+    public Node right;
 
     public void preorder() {
         System.out.println(this);
@@ -100,7 +100,7 @@ class HuffmanNode implements Comparable<HuffmanNode> {
         System.out.println(this);
     }
 
-    public HuffmanNode(int weight) {
+    public Node(int weight) {
         this.weight = weight;
     }
 
@@ -110,7 +110,7 @@ class HuffmanNode implements Comparable<HuffmanNode> {
     }
 
     @Override
-    public int compareTo(HuffmanNode o) {
+    public int compareTo(Node o) {
         return weight - o.weight;
     }
 }
