@@ -63,14 +63,13 @@ class HuffmanTreeForCode {
         huffmanCodes = new HashMap<>();
         if (root == null) {
             return;
-        } else {
-            StringBuilder stringBuilder = new StringBuilder();
-            if (root.left != null) {
-                getCodes(root.left, "0", stringBuilder);
-            }
-            if (root.right != null) {
-                getCodes(root.right, "1", stringBuilder);
-            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        if (root.left != null) {
+            getCodes(root.left, "0", stringBuilder);
+        }
+        if (root.right != null) {
+            getCodes(root.right, "1", stringBuilder);
         }
     }
 
