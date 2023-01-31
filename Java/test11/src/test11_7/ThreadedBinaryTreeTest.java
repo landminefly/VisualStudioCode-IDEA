@@ -77,7 +77,10 @@ class ThreadedBinaryTree {
         }
     }
 
-    //中序遍历（无需递归）
+    /**
+     * 中序遍历（无需递归）
+     * 要想理解该方法，还得结合中序遍历的特点抽象理解
+     */
     public void inorder() {
         ThreadedTreeNode temp = root;
         while (temp != null) {
