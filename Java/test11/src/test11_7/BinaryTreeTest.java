@@ -35,8 +35,10 @@ public class BinaryTreeTest {
 }
 
 class BinaryTree {
+    //根节点
     public TreeNode root;
 
+    //前序遍历
     public void preorder() {
         System.out.println("开始输出");
         if (root != null) {
@@ -45,6 +47,7 @@ class BinaryTree {
         System.out.println("输出完毕");
     }
 
+    //中序遍历
     public void inorder() {
         System.out.println("开始输出");
         if (root != null) {
@@ -53,6 +56,7 @@ class BinaryTree {
         System.out.println("输出完毕");
     }
 
+    //后序遍历
     public void postorder() {
         System.out.println("开始输出");
         if (root != null) {
@@ -61,6 +65,7 @@ class BinaryTree {
         System.out.println("输出完毕");
     }
 
+    //前序查找
     public TreeNode preorderSearch(int keyId) {
         if (root == null) {
             return null;
@@ -69,6 +74,7 @@ class BinaryTree {
         }
     }
 
+    //中序查找
     public TreeNode inorderSearch(int keyId) {
         if (root == null) {
             return null;
@@ -77,6 +83,7 @@ class BinaryTree {
         }
     }
 
+    //后序查找
     public TreeNode postorderSearch(int keyId) {
         if (root == null) {
             return null;
@@ -85,6 +92,10 @@ class BinaryTree {
         }
     }
 
+    /**
+     * 删除子树
+     * @return 删除成功返回true，反之返回false
+     */
     public boolean deleteSubtree(int keyId) {
         if (root == null) {
             return false;
@@ -98,9 +109,12 @@ class BinaryTree {
 }
 
 class TreeNode {
+    //数据段
     public int id;
     public String name;
+    //左子节点
     public TreeNode left;
+    //右子节点
     public TreeNode right;
 
     public TreeNode(int id, String name) {
@@ -113,6 +127,7 @@ class TreeNode {
         return "id: " + id + " name: " + name;
     }
 
+    //前序遍历
     public void preorder() {
         System.out.println(this);
         if (left != null) {
@@ -123,6 +138,7 @@ class TreeNode {
         }
     }
 
+    //中序遍历
     public void inorder() {
         if (left != null) {
             left.inorder();
@@ -133,6 +149,7 @@ class TreeNode {
         }
     }
 
+    //后序遍历
     public void postorder() {
         if (left != null) {
             left.postorder();
@@ -143,6 +160,7 @@ class TreeNode {
         System.out.println(this);
     }
 
+    //前序查找
     public TreeNode preorderSearch(int keyId) {
         if (id == keyId) {
             return this;
@@ -160,6 +178,7 @@ class TreeNode {
         return result;
     }
 
+    //中序查找
     public TreeNode inorderSearch(int keyId) {
         TreeNode result = null;
         if (left != null) {
@@ -177,6 +196,7 @@ class TreeNode {
         return result;
     }
 
+    //后序查找
     public TreeNode postorderSearch(int keyId) {
         TreeNode result = null;
         if (left != null) {
@@ -197,6 +217,10 @@ class TreeNode {
         return result;
     }
 
+    /**
+     * 删除子树
+     * @return 删除成功返回true，反之返回false
+     */
     public boolean deleteSubtree(int keyId) {
         if (left != null && left.id == keyId) {
             left = null;
