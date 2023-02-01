@@ -18,17 +18,23 @@ public class GraphTest {
     }
 }
 
+//无向图
 class Graph {
+    //顶点集
     public ArrayList<String> vertexes;
+    //邻接矩阵，顶点集下标代表的顶点和邻接矩阵下标代表的顶点是一一对应的
     public int[][] edges;
+    //遍历时判断顶点是否已被访问
     public boolean[] isVisited;
 
+    //创建图对象时，先创建一些顶点
     public Graph(String[] strings) {
         vertexes = new ArrayList<>();
         edges = new int[strings.length][strings.length];
         vertexes.addAll(Arrays.asList(strings));
     }
 
+    //添加一个顶点，同时也要更新邻接矩阵
     public void addVertex(String s) {
         vertexes.add(s);
         for (int i = 0; i < edges.length; i++) {
@@ -38,6 +44,8 @@ class Graph {
         edges[edges.length - 1] = new int[vertexes.size()];
     }
 
+    //通过顶点下标的方式来添加边
+    //因为是无向图，所以若i!=j，那么edges[i][j]、edges[j][i]都要+1
     public void addEdge(int i, int j) {
         if (i < edges.length && i >= 0 &&
             j < edges.length && j >= 0) {
@@ -50,6 +58,8 @@ class Graph {
         }
     }
 
+    //通过顶点值的方式来添加边
+    //因为是无向图，所以若i!=j，那么edges[i][j]、edges[j][i]都要+1
     public void addEdge(String s1, String s2) {
         int i = translateVertexToIndex(s1);
         int j = translateVertexToIndex(s2);
@@ -64,10 +74,12 @@ class Graph {
         }
     }
 
+    //将顶点值转换为顶点下标
     public int translateVertexToIndex(String s) {
         return vertexes.indexOf(s);
     }
 
+    //将顶点下标转换为顶点值
     public String translateIndexToVertex(int index) {
         if (index < edges.length && index >= 0) {
             return vertexes.get(index);
@@ -77,12 +89,15 @@ class Graph {
         }
     }
 
+    //打印邻接矩阵
     public void showEdges() {
         for (int[] i : edges) {
             System.out.println(Arrays.toString(i));
         }
     }
 
+    //深度优先遍历，要用到递归
+    //考虑到非连通图，因此要把所有顶点分别作为遍历起点执行一次
     public void DFS() {
         isVisited = new boolean[edges.length];
         System.out.println("DFS开始输出");
@@ -104,6 +119,8 @@ class Graph {
         }
     }
 
+    //广度优先遍历，无需递归，要用到队列
+    //考虑到非连通图，因此要把所有顶点分别作为遍历起点执行一次
     public void BFS() {
         isVisited = new boolean[edges.length];
         System.out.println("BFS开始输出");
