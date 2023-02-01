@@ -34,95 +34,6 @@ class AVLTree {
             root.add(node);
         }
     }
-
-    public Node search(int keyValue) {
-        return searchWithParent(keyValue);
-    }
-
-    private Node parent;
-
-    private Node searchWithParent(int keyValue) {
-        parent = null;
-        if (root == null) {
-            return null;
-        }
-        return searchWithParent(root, keyValue);
-    }
-
-    private Node searchWithParent(Node node, int keyValue) {
-        if (node.value == keyValue) {
-            return node;
-        } else if (node.value > keyValue) {
-            if (node.left == null) {
-                return null;
-            }
-            parent = node;
-            return searchWithParent(node.left, keyValue);
-        } else {
-            if (node.right == null) {
-                return null;
-            }
-            parent = node;
-            return searchWithParent(node.right, keyValue);
-        }
-    }
-
-    private int deleteMinNodeOfRightSubtree(Node node) {
-        Node temp = node;
-        Node tempParent = node;
-        while (temp.left != null) {
-            tempParent = temp;
-            temp = temp.left;
-        }
-        tempParent.left = null;
-        return temp.value;
-    }
-
-    public boolean delete(int keyValue) {
-        Node nodeToDelete = searchWithParent(keyValue);
-        if (nodeToDelete == null) {
-            return false;
-        }
-        if (nodeToDelete.left == null && nodeToDelete.right == null) {
-            if (parent == null) {
-                root = null;
-            } else {
-                if (parent.left != null && parent.left.value == keyValue) {
-                    parent.left = null;
-                } else {
-                    parent.right = null;
-                }
-            }
-            return true;
-        } else if (nodeToDelete.left != null && nodeToDelete.right != null) {
-            nodeToDelete.value = deleteMinNodeOfRightSubtree(nodeToDelete);
-            return true;
-        } else {
-            if (nodeToDelete.left != null) {
-                if (parent == null) {
-                    root = root.left;
-                } else {
-                    if (parent.left.value == keyValue) {
-                        parent.left = nodeToDelete.left;
-                    } else {
-                        parent.right = nodeToDelete.left;
-                    }
-                }
-            } else {
-                if (parent == null) {
-                    root = root.right;
-                } else {
-                    if (parent.left.value == keyValue) {
-                        parent.left = nodeToDelete.right;
-                    } else {
-                        parent.right = nodeToDelete.right;
-                    }
-                }
-            }
-            return true;
-        }
-    }
-
 }
 
 class Node {
@@ -149,6 +60,7 @@ class Node {
         }
     }
 
+    //计算以node为树根的子树的树高
     public static int height(Node node) {
         if (node == null) {
             return 0;
@@ -156,6 +68,7 @@ class Node {
         return Math.max(node.left == null ? 0 : height(node.left), node.right == null ? 0 : height(node.right)) + 1;
     }
 
+    //左旋转
     private void leftRotate() {
         Node newNode = new Node(value);
         newNode.left = left;
@@ -165,6 +78,7 @@ class Node {
         right = right.right;
     }
 
+    //右旋转
     private void rightRotate() {
         Node newNode = new Node(value);
         newNode.left = left.right;
@@ -189,6 +103,7 @@ class Node {
             }
         }
 
+        //在添加节点后的回溯过程中，自下而上依次对各子树进行检查和旋转
         if (height(left) - height(right) > 1) {
             if (left != null && height(left.right) > height(left.left)) {
                 left.leftRotate();
