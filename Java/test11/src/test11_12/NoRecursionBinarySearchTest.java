@@ -8,6 +8,7 @@ public class NoRecursionBinarySearchTest {
 }
 
 class NoRecursionBinarySearch {
+    //如果有相同元素，只找一个
     public static int search(int[] arr, int key) {
         if (key < arr[0] || key > arr[arr.length - 1]) {
             return -1;
