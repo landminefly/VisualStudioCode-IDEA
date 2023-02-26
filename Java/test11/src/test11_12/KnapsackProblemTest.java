@@ -2,11 +2,14 @@ package test11_12;
 
 public class KnapsackProblemTest {
     public static void main(String[] args) {
-        int[] weight = {1, 5, 4, 8, 6};
-        int[] value = {30,40,50,80,50};
-        KnapsackProblem knapsackProblem = new KnapsackProblem(weight, value, 15);
+        // int[] weight = {1, 5, 4, 8, 6};
+        // int[] value = {30,40,50,80,50};
+
+        int[] weight = {1, 3, 2};
+        int[] value = {30,40,50};
+        KnapsackProblem knapsackProblem = new KnapsackProblem(weight, value, 4);
         knapsackProblem.solve();
-        knapsackProblem.showAttemp();
+        knapsackProblem.showAttempt();
         knapsackProblem.showItems();
     }
 }
@@ -16,7 +19,7 @@ class KnapsackProblem {
     int[] weight;
     int[] value;
     int maxWeight;
-    int[][] attemp;
+    int[][] attempt;
     int[][] path;
 
     public KnapsackProblem(int[] weight, int[] value, int maxWeight) {
@@ -27,29 +30,29 @@ class KnapsackProblem {
         this.value = value;
         this.itemCount = value.length;
         this.maxWeight = maxWeight;
-        attemp = new int[itemCount + 1][maxWeight + 1];
+        attempt = new int[itemCount + 1][maxWeight + 1];
         path = new int[itemCount + 1][maxWeight + 1];
     }
 
     public void solve() {
-        for (int i = 1; i < attemp.length; i++) {
-            for (int j = 1; j < attemp[i].length; j++) {
+        for (int i = 1; i < attempt.length; i++) {
+            for (int j = 1; j < attempt[i].length; j++) {
                 if (weight[i - 1] > j) {
-                    attemp[i][j] = attemp[i - 1][j];
+                    attempt[i][j] = attempt[i - 1][j];
                 } else {
-                    if (attemp[i - 1][j] < value[i - 1] + attemp[i - 1][j - weight[i - 1]]) {
-                        attemp[i][j] = value[i - 1] + attemp[i - 1][j - weight[i - 1]];
+                    if (attempt[i - 1][j] < value[i - 1] + attempt[i - 1][j - weight[i - 1]]) {
+                        attempt[i][j] = value[i - 1] + attempt[i - 1][j - weight[i - 1]];
                         path[i][j] = 1;
                     } else {
-                        attemp[i][j] = attemp[i - 1][j];
+                        attempt[i][j] = attempt[i - 1][j];
                     }
                 }
             }
         }
     }
 
-    public void showAttemp(){
-        for(int[] i : attemp){
+    public void showAttempt(){
+        for(int[] i : attempt){
             for(int j : i){
                 System.out.print(j + "\t");
             }
