@@ -28,10 +28,10 @@ class ViolenceMatch {
                 j = 0;
             }
         }
-        if (i == str.length()) {
-            return -1;
-        } else {
+        if (j==key.length()) {
             return i - j;
+        } else {
+            return -1;
         }
     }
 }
