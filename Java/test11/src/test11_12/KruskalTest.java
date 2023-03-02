@@ -17,7 +17,7 @@ public class KruskalTest {
                                     {16, 7, 6, INF, 2, INF, 9},
                                     {14, INF, INF, INF, 8, 9, INF}};
         Graph2 graph = new Graph2(vertexes, edges);
-        int[][] edgesOfTree = Kruskal.createMinSpanningTree(graph);
+        int[][] edgesOfTree = Kruskal.createMinSpanningTree2(graph);
         for (int[] i : edgesOfTree) {
             for (int j : i) {
                 if (j == INF) {
@@ -34,7 +34,7 @@ public class KruskalTest {
 class Kruskal {
     public static final int INF = Integer.MAX_VALUE;
 
-    public static int[][] createMinSpanningTree(Graph2 g) {
+    public static int[][] createMinSpanningTree1(Graph2 g) {
         int[] mark = new int[g.VCount];
         Collections.sort(g.edgesWithWeight);
         int[][] edgesOfTree = new int[g.VCount][g.VCount];
@@ -47,6 +47,34 @@ class Kruskal {
             int mark2 = getMark(mark, e.v2);
             if (mark1 != mark2) {
                 mark[mark1] = mark2;
+                edgesOfTree[e.v1][e.v2] = e.weight;
+                edgesOfTree[e.v2][e.v1] = e.weight;
+                System.out.println("添加边：" + g.translateIndexToVertex(e.v1) + " - " + g.translateIndexToVertex(e.v2));
+            }
+        }
+        return edgesOfTree;
+    }
+
+    public static int[][] createMinSpanningTree2(Graph2 g) {
+        int[] mark = new int[g.VCount];
+        for(int i = 0; i<mark.length; i++){
+            mark[i] = i;
+        }
+        Collections.sort(g.edgesWithWeight);
+        int[][] edgesOfTree = new int[g.VCount][g.VCount];
+        for (int[] i : edgesOfTree) {
+            Arrays.fill(i, INF);
+        }
+        for (int i = 0; i < g.ECount; i++) {
+            Edge e = g.edgesWithWeight.get(i);
+            int mark1 = mark[e.v1];
+            int mark2 = mark[e.v2];
+            if (mark1 != mark2) {
+                for(int j = 0; j<mark.length; j++){
+                    if(mark[j] == mark1){
+                        mark[j] = mark2;
+                    }
+                }
                 edgesOfTree[e.v1][e.v2] = e.weight;
                 edgesOfTree[e.v2][e.v1] = e.weight;
                 System.out.println("添加边：" + g.translateIndexToVertex(e.v1) + " - " + g.translateIndexToVertex(e.v2));
