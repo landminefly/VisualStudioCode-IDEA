@@ -32,7 +32,13 @@ public class PrimTest {
 class Prim {
     public static final int INF = Integer.MAX_VALUE;
 
+    /**
+     * @param g 图对象
+     * @param vertexToStart 循环开始的顶点
+     * @return 最小生成树的邻接矩阵
+     */
     public static int[][] createMinSpanningTree(Graph1 g, char vertexToStart) {
+        //记录最小生成树的邻接矩阵
         int[][] edgesOfTree = new int[g.VCount][g.VCount];
         for (int[] i : edgesOfTree) {
             Arrays.fill(i, INF);
@@ -40,10 +46,12 @@ class Prim {
         int index = g.translateVertexToIndex(vertexToStart);
         boolean[] visited = new boolean[g.VCount];
         visited[index] = true;
+        //记录每次循环中，符合条件的边的权及其关联顶点
         int minWeight;
         int v1 = -1;
         int v2 = -1;
         for (int e = 0; e < g.VCount - 1; e++) {
+            //每次循环开始前，先重置minWeight的值
             minWeight = INF;
             for (int i = 0; i < g.VCount; i++) {
                 for (int j = i + 1; j < g.VCount; j++) {
