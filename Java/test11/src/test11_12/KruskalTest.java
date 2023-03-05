@@ -17,8 +17,23 @@ public class KruskalTest {
                                     {16, 7, 6, INF, 2, INF, 9},
                                     {14, INF, INF, INF, 8, 9, INF}};
         Graph2 graph = new Graph2(vertexes, edges);
-        int[][] edgesOfTree = Kruskal.createMinSpanningTree2(graph);
-        for (int[] i : edgesOfTree) {
+        //标记方法1
+        int[][] edgesOfTree1 = Kruskal.createMinSpanningTree1(graph);
+        for (int[] i : edgesOfTree1) {
+            for (int j : i) {
+                if (j == INF) {
+                    System.out.print("INF\t");
+                } else {
+                    System.out.print(j + "\t");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        //标记方法2
+        int[][] edgesOfTree2 = Kruskal.createMinSpanningTree2(graph);
+        for (int[] i : edgesOfTree2) {
             for (int j : i) {
                 if (j == INF) {
                     System.out.print("INF\t");
@@ -34,6 +49,7 @@ public class KruskalTest {
 class Kruskal {
     public static final int INF = Integer.MAX_VALUE;
 
+    //标记方法1（需配合getMark）
     public static int[][] createMinSpanningTree1(Graph2 g) {
         int[] mark = new int[g.VCount];
         Collections.sort(g.edgesWithWeight);
@@ -57,7 +73,7 @@ class Kruskal {
 
     /**
      * @param mark 保存顶点标记的数组
-     * @param i 指定顶点下标
+     * @param i    指定顶点下标
      * @return 返回指定顶点的标记
      */
     public static int getMark(int[] mark, int i) {
@@ -67,9 +83,10 @@ class Kruskal {
         return i;
     }
 
+    //标记方法2
     public static int[][] createMinSpanningTree2(Graph2 g) {
         int[] mark = new int[g.VCount];
-        for(int i = 0; i<mark.length; i++){
+        for (int i = 0; i < mark.length; i++) {
             mark[i] = i;
         }
         Collections.sort(g.edgesWithWeight);
@@ -82,8 +99,8 @@ class Kruskal {
             int mark1 = mark[e.v1];
             int mark2 = mark[e.v2];
             if (mark1 != mark2) {
-                for(int j = 0; j<mark.length; j++){
-                    if(mark[j] == mark1){
+                for (int j = 0; j < mark.length; j++) {
+                    if (mark[j] == mark1) {
                         mark[j] = mark2;
                     }
                 }
