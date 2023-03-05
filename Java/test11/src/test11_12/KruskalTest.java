@@ -55,6 +55,18 @@ class Kruskal {
         return edgesOfTree;
     }
 
+    /**
+     * @param mark 保存顶点标记的数组
+     * @param i 指定顶点下标
+     * @return 返回指定顶点的标记
+     */
+    public static int getMark(int[] mark, int i) {
+        while (mark[i] != 0) {
+            i = mark[i];
+        }
+        return i;
+    }
+
     public static int[][] createMinSpanningTree2(Graph2 g) {
         int[] mark = new int[g.VCount];
         for(int i = 0; i<mark.length; i++){
@@ -81,13 +93,6 @@ class Kruskal {
             }
         }
         return edgesOfTree;
-    }
-
-    public static int getMark(int[] mark, int i) {
-        while (mark[i] != 0) {
-            i = mark[i];
-        }
-        return i;
     }
 }
 
