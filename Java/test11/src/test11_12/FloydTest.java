@@ -7,62 +7,42 @@ public class FloydTest {
 
     public static void main(String[] args) {
         char[] vertexes = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-        int[][] edges = new int[][]{{0, 12, INF, INF, INF, 16, 14},
-                                    {12, 0, 10, INF, INF, 7, INF},
-                                    {INF, 10, 0, 3, 5, 6, INF},
-                                    {INF, INF, 3, 0, 4, INF, INF},
-                                    {INF, INF, 5, 4, 0, 2, 8},
-                                    {16, 7, 6, INF, 2, 0, 9},
-                                    {14, INF, INF, INF, 8, 9, 0}};
+        int[][] edges = new int[][]{{INF, 12, INF, INF, INF, 16, 14},
+                                    {12, INF, 10, INF, INF, 7, INF},
+                                    {INF, 10, INF, 3, 5, 6, INF},
+                                    {INF, INF, 3, INF, 4, INF, INF},
+                                    {INF, INF, 5, 4, INF, 2, 8},
+                                    {16, 7, 6, INF, 2, INF, 9},
+                                    {14, INF, INF, INF, 8, 9, INF}};
         Graph4 graph = new Graph4(vertexes, edges);
-
         Floyd floyd = new Floyd(graph);
-        // for (int[] i : floyd.preNode) {
-        //     for (int j : i) {
-        //         System.out.print(j + "\t");
-        //     }
-        //     System.out.println();
-        // }
-        //
-        // System.out.println();
-        //
-        // for (int[] i : floyd.distance) {
-        //     for (int j : i) {
-        //         if (j == INF) {
-        //             System.out.print("INF\t");
-        //         } else {
-        //             System.out.print(j + "\t");
-        //         }
-        //     }
-        //     System.out.println();
-        // }
-        //
-        // System.out.println();
-
         floyd.nearest();
-        // for (int[] i : floyd.preNode) {
-        //     for (int j : i) {
-        //         System.out.print(j + "\t");
-        //     }
-        //     System.out.println();
-        // }
-        //
-        // System.out.println();
-        //
-        // for (int[] i : floyd.distance) {
-        //     for (int j : i) {
-        //         if (j == INF) {
-        //             System.out.print("INF\t");
-        //         } else {
-        //             System.out.print(j + "\t");
-        //         }
-        //     }
-        //     System.out.println();
-        // }
+        System.out.println("preNode数组");
+        for (int[] i : floyd.preNode) {
+            for (int j : i) {
+                System.out.print(j + "\t");
+            }
+            System.out.println();
+        }
 
+        System.out.println();
+        System.out.println("distance数组");
+        for (int[] i : floyd.distance) {
+            for (int j : i) {
+                if (j == INF) {
+                    System.out.print("INF\t");
+                } else {
+                    System.out.print(j + "\t");
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println("从A到D的最短路线");
         int i = 0;
         int j = 3;
-        while(j != i){
+        while (j != i) {
             System.out.print(graph.translateIndexToVertex(j) + " <- ");
             j = floyd.preNode[i][j];
         }
@@ -84,7 +64,7 @@ class Floyd {
             Arrays.fill(i, -1);
         }
         distance = new int[graph.VCount][];
-        for (int i = 0; i<graph.VCount; i++) {
+        for (int i = 0; i < graph.VCount; i++) {
             distance[i] = Arrays.copyOf(graph.edgesWithWeight[i], graph.VCount);
         }
         for (int i = 0; i < graph.VCount; i++) {
@@ -97,13 +77,13 @@ class Floyd {
         }
     }
 
-    public void nearest(){
+    public void nearest() {
         int tempDis;
-        for(int k = 0; k< graph.VCount;k++){
-            for(int i = 0; i< graph.VCount;i++){
-                for(int j = 0; j< graph.VCount;j++){
+        for (int k = 0; k < graph.VCount; k++) {
+            for (int i = 0; i < graph.VCount; i++) {
+                for (int j = 0; j < graph.VCount; j++) {
                     tempDis = distance[i][k] + distance[k][j];
-                    if(tempDis < distance[i][j]){
+                    if (tempDis < distance[i][j]) {
                         distance[i][j] = tempDis;
                         preNode[i][j] = preNode[k][j];
                     }
