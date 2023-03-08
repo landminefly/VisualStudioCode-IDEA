@@ -48,6 +48,7 @@ class HorseChess {
         while (!canVisitNext.isEmpty()) {
             Point p = canVisitNext.remove(0);
             if (!visited[p.row * colCount + p.col]) {
+                //递归
                 traversal(p.row, p.col, step + 1);
             }
         }
