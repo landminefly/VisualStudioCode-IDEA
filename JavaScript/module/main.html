@@ -7,7 +7,10 @@
 		<title>Document</title>
 	</head>
 	<body>
-        <!-- 在导入js模块时，需要加上 type="module" 的属性，否则会报错-->
+        <!-- import语句只能在声明了 type="module" 的 script 标签中使用，否则报错-->
 		<script src="./test_main.js" type="module"></script>
+		<script type="module">
+			import * as m1 from "./test_main.js"
+		</script>
 	</body>
 </html>
