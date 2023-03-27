@@ -45,6 +45,7 @@ class BinaryTree1 {
         TreeNode1 temp = root;
         while (temp != null || !stack.empty()) {
             while (temp != null) {
+                //在入栈时输出该元素
                 System.out.println(temp);
                 stack.push(temp);
                 temp = temp.left;
@@ -65,6 +66,7 @@ class BinaryTree1 {
                 temp = temp.left;
             }
             if (!stack.empty()) {
+                //在出栈时输出该元素
                 temp = stack.pop();
                 System.out.println(temp);
                 temp = temp.right;
@@ -81,10 +83,13 @@ class BinaryTree1 {
             cur = stack.peek();
             if ((cur.left == null && cur.right == null) ||
                 (pre != null && (cur.left == pre || cur.right == pre))) {
+                //在出栈时输出该元素，且必须保证该元素没有左右子节点或者其子节点都被输出过了
                 System.out.println(cur);
                 stack.pop();
                 pre = cur;
             } else {
+                //先将右子节点入栈，再将左子节点入栈，这样栈顶元素就是左子节点
+                //那么下次循环就先从左子节点开始，保证先左子树后右子树的遍历顺序
                 if (cur.right != null) {
                     stack.push(cur.right);
                 }
