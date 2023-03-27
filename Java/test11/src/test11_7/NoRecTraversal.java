@@ -79,7 +79,8 @@ class BinaryTree1 {
         stack.push(root);
         while (!stack.empty()) {
             cur = stack.peek();
-            if ((cur.left == null && cur.right == null) || (pre != null && (cur.left == pre || cur.right == pre))) {
+            if ((cur.left == null && cur.right == null) ||
+                (pre != null && (cur.left == pre || cur.right == pre))) {
                 System.out.println(cur);
                 stack.pop();
                 pre = cur;
