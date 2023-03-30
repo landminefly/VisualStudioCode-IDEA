@@ -32,6 +32,8 @@ public class BinaryTreeTest {
         System.out.println(binaryTree.postorderSearch(5));
 
         System.out.println(binaryTree.height());
+        System.out.println(binaryTree.nodeCount());
+        System.out.println(binaryTree.leaveCount());
 
         // System.out.println(binaryTree.deleteSubtree(8));
         // binaryTree.preorder();
@@ -112,11 +114,11 @@ class BinaryTree {
         }
     }
 
+    //返回二叉树的高度
     public int height() {
         return height(root);
     }
 
-    //返回二叉树的高度
     public int height(TreeNode node) {
         if (node == null) {
             return 0;
@@ -125,6 +127,33 @@ class BinaryTree {
         int lHeight = height(node.left);
         int rHeight = height(node.right);
         return Math.max(lHeight, rHeight) + 1;
+    }
+
+    //计算二叉树的节点个数
+    public int nodeCount() {
+        return nodeCount(root);
+    }
+
+    public int nodeCount(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return nodeCount(node.left) + nodeCount(node.right) + 1;
+    }
+
+    //计算二叉树的叶子节点个数
+    public int leaveCount() {
+        return leaveCount(root);
+    }
+
+    public int leaveCount(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        return leaveCount(node.left) + leaveCount(node.right);
     }
 }
 
