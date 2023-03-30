@@ -1,5 +1,7 @@
 package test11_7;
 
+import org.w3c.dom.Node;
+
 public class BinaryTreeTest {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
@@ -28,6 +30,8 @@ public class BinaryTreeTest {
         System.out.println(binaryTree.preorderSearch(4));
         System.out.println(binaryTree.inorderSearch(0));
         System.out.println(binaryTree.postorderSearch(5));
+
+        System.out.println(binaryTree.height());
 
         // System.out.println(binaryTree.deleteSubtree(8));
         // binaryTree.preorder();
@@ -94,6 +98,7 @@ class BinaryTree {
 
     /**
      * 删除子树
+     *
      * @return 删除成功返回true，反之返回false
      */
     public boolean deleteSubtree(int keyId) {
@@ -105,6 +110,21 @@ class BinaryTree {
         } else {
             return root.deleteSubtree(keyId);
         }
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    //返回二叉树的高度
+    public int height(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        //递归计算左右子树的高度
+        int lHeight = height(node.left);
+        int rHeight = height(node.right);
+        return Math.max(lHeight, rHeight) + 1;
     }
 }
 
@@ -219,6 +239,7 @@ class TreeNode {
 
     /**
      * 删除子树
+     *
      * @return 删除成功返回true，反之返回false
      */
     public boolean deleteSubtree(int keyId) {
