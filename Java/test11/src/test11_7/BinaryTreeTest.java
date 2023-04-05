@@ -77,19 +77,19 @@ class BinaryTree {
 
     //广度优先遍历
     //因为是从上到下遍历的，所以无需使用数组isVisited来记录节点是否被访问
-    public void BFS(){
+    public void BFS() {
         System.out.println("开始输出");
-        if(root != null){
+        if (root != null) {
             Queue<TreeNode> q = new LinkedList<>();
             System.out.println(root);
             q.add(root);
-            while(!q.isEmpty()){
+            while (!q.isEmpty()) {
                 TreeNode temp = q.remove();
-                if(temp.left != null){
+                if (temp.left != null) {
                     System.out.println(temp.left);
                     q.add(temp.left);
                 }
-                if(temp.right != null){
+                if (temp.right != null) {
                     System.out.println(temp.right);
                     q.add(temp.right);
                 }
@@ -125,7 +125,6 @@ class BinaryTree {
             return root.postorderSearch(keyId);
         }
     }
-
 
 
     /**
