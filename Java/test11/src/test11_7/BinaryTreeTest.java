@@ -2,6 +2,9 @@ package test11_7;
 
 import org.w3c.dom.Node;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTreeTest {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
@@ -34,6 +37,7 @@ public class BinaryTreeTest {
         System.out.println(binaryTree.height());
         System.out.println(binaryTree.nodeCount());
         System.out.println(binaryTree.leaveCount());
+        binaryTree.BFS();
 
         // System.out.println(binaryTree.deleteSubtree(8));
         // binaryTree.preorder();
@@ -71,6 +75,30 @@ class BinaryTree {
         System.out.println("输出完毕");
     }
 
+    //广度优先遍历
+    //因为是从上到下遍历的，所以无需使用数组isVisited来记录节点是否被访问
+    public void BFS(){
+        System.out.println("开始输出");
+        if(root != null){
+            Queue<TreeNode> q = new LinkedList<>();
+            System.out.println(root);
+            q.add(root);
+            while(!q.isEmpty()){
+                TreeNode temp = q.remove();
+                if(temp.left != null){
+                    System.out.println(temp.left);
+                    q.add(temp.left);
+                }
+                if(temp.right != null){
+                    System.out.println(temp.right);
+                    q.add(temp.right);
+                }
+            }
+        }
+        System.out.println("输出完毕");
+
+    }
+
     //前序查找
     public TreeNode preorderSearch(int keyId) {
         if (root == null) {
@@ -97,6 +125,8 @@ class BinaryTree {
             return root.postorderSearch(keyId);
         }
     }
+
+
 
     /**
      * 删除子树
