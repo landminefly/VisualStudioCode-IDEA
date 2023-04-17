@@ -15,13 +15,13 @@ public class BinarySortTreeTest {
         System.out.println(binarySortTree.search(8));
 
         System.out.println(binarySortTree.delete(0));
-        System.out.println(binarySortTree.delete(1));
+        // System.out.println(binarySortTree.delete(1));
         System.out.println(binarySortTree.delete(2));
-        System.out.println(binarySortTree.delete(3));
-        System.out.println(binarySortTree.delete(4));
-        System.out.println(binarySortTree.delete(5));
+        // System.out.println(binarySortTree.delete(3));
+        // System.out.println(binarySortTree.delete(4));
+        // System.out.println(binarySortTree.delete(5));
         System.out.println(binarySortTree.delete(6));
-        System.out.println(binarySortTree.delete(7));
+        // System.out.println(binarySortTree.delete(7));
         System.out.println(binarySortTree.delete(8));
         System.out.println(binarySortTree.delete(9));
 
@@ -93,14 +93,30 @@ class BinarySortTree {
 
     //删除指定节点的右子树中的最小值节点，并返回该最小值
     private int deleteMinNodeOfRightSubtree(Node node) {
-        Node temp = node;
+        Node temp = node.right;
         Node tempParent = node;
-        while (temp.left != null) {
-            tempParent = temp;
-            temp = temp.left;
+        //如果指定节点的右子树根就是最小值节点，那么它被父节点的右指针指向
+        if (temp.left == null) {
+            tempParent.right = temp.right;
+        } else {
+            //其余情况，最小值节点都是被其父节点的左指针指向
+            while (temp.left != null) {
+                tempParent = temp;
+                temp = temp.left;
+            }
+            tempParent.left = temp.right;
         }
-        tempParent.left = null;
         return temp.value;
+    }
+
+    //将指定节点的左子树合并到右子树中
+    private void MergeLeftSubtreeToRightSubtree(Node node) {
+        Node leftRoot = node.left;
+        Node minNode = node.right;
+        while (minNode.left != null) {
+            minNode = minNode.left;
+        }
+        minNode.left = leftRoot;
     }
 
     //删除指定节点，删除成功返回true，反之返回false
@@ -128,9 +144,20 @@ class BinarySortTree {
         }
         //如果待删除节点是分支点，且左右节点都不为空
         else if (nodeToDelete.left != null && nodeToDelete.right != null) {
-            //找到其右子树的最小值节点，删除该最小值节点，再将该最小值赋值给待删除节点
+            //两种方法，二选一
+
+            //1.找到其右子树的最小值节点，删除该最小值节点，再将该最小值赋值给待删除节点
             nodeToDelete.value = deleteMinNodeOfRightSubtree(nodeToDelete);
             return true;
+
+            //2.将其左子树合并到右子树中，并将待删除节点的父节点指向它的指针改为指向它的右子节点即可
+            // MergeLeftSubtreeToRightSubtree(nodeToDelete);
+            // if (parent.left == nodeToDelete) {
+            //     parent.left = nodeToDelete.right;
+            // } else {
+            //     parent.right = nodeToDelete.right;
+            // }
+            // return true;
         }
         //如果待删除节点是分支点，且只有一个子节点
         else {
