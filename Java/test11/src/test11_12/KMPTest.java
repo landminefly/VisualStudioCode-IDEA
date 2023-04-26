@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class KMPTest {
     public static void main(String[] args) {
-        KMP kmp = new KMP("abacbcbababaca", "babac");
+        KMP kmp = new KMP("abac", "ad");
         kmp.getNext();
         System.out.println(Arrays.toString(kmp.next));
         System.out.println(kmp.kmpSearch());
@@ -27,7 +27,7 @@ class KMP {
         int i = -1;
         int j = 0;
         while (j < next.length - 1) {
-            if (i == -1 || key.charAt(i) == key.charAt((j))) {
+            if (i == -1 || key.charAt(i) == key.charAt(j)) {
                 i++;
                 j++;
                 if (key.charAt(i) != key.charAt((j))) {
@@ -52,7 +52,7 @@ class KMP {
                 j = next[j];
             }
         }
-        if (i == str.length()) {
+        if (i == str.length() && j != key.length()) {
             return -1;
         } else {
             return i - j;
