@@ -52,6 +52,9 @@ class Kruskal {
     //标记方法1（需配合getMark）
     public static int[][] createMinSpanningTree1(Graph2 g) {
         int[] mark = new int[g.VCount];
+        for(int i = 0; i<mark.length; i++){
+            mark[i] = i;
+        }
         Collections.sort(g.edgesWithWeight);
         int[][] edgesOfTree = new int[g.VCount][g.VCount];
         for (int[] i : edgesOfTree) {
@@ -77,7 +80,7 @@ class Kruskal {
      * @return 返回指定顶点的标记
      */
     public static int getMark(int[] mark, int i) {
-        while (mark[i] != 0) {
+        while(i != mark[i]){
             i = mark[i];
         }
         return i;
