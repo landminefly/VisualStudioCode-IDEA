@@ -6,16 +6,26 @@ public class PrimTest {
     public static final int INF = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
-        char[] vertexes = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-        int[][] edges = new int[][]{{INF, 12, INF, INF, INF, 16, 14},
-                                    {12, INF, 10, INF, INF, 7, INF},
-                                    {INF, 10, INF, 3, 5, 6, INF},
-                                    {INF, INF, 3, INF, 4, INF, INF},
-                                    {INF, INF, 5, 4, INF, 2, 8},
-                                    {16, 7, 6, INF, 2, INF, 9},
-                                    {14, INF, INF, INF, 8, 9, INF}};
+        // char[] vertexes = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+        // int[][] edges = new int[][]{{INF, 12, INF, INF, INF, 16, 14},
+        //                             {12, INF, 10, INF, INF, 7, INF},
+        //                             {INF, 10, INF, 3, 5, 6, INF},
+        //                             {INF, INF, 3, INF, 4, INF, INF},
+        //                             {INF, INF, 5, 4, INF, 2, 8},
+        //                             {16, 7, 6, INF, 2, INF, 9},
+        //                             {14, INF, INF, INF, 8, 9, INF}};
+        char[] vertexes = {'0', '1', '2', '3', '4', '5', '6', '7'};
+        int[][] edges = new int[][]{{INF, 2, 3, INF, INF, INF, INF, INF},
+                                    {2, INF, INF, 2, INF, INF, INF, INF},
+                                    {3, INF, INF, 1, INF, INF, INF, INF},
+                                    {INF, 2, 1, INF, 2, 4, INF, INF},
+                                    {INF, INF, INF, 2, INF, 1, 2, INF},
+                                    {INF, INF, INF, 4, 1, INF, 2, 1},
+                                    {INF, INF, INF, INF, 2, 2, INF, 1},
+                                    {INF, INF, INF, INF, INF, 1, 1, INF}};
         Graph1 graph = new Graph1(vertexes, edges);
-        int[][] edgesOfTree = Prim1.createMinSpanningTree(graph, 'B');
+        // int[][] edgesOfTree = Prim1.createMinSpanningTree(graph, 'B');
+        int[][] edgesOfTree = Prim1.createMinSpanningTree(graph, '0');
         for (int[] i : edgesOfTree) {
             for (int j : i) {
                 if (j == INF) {
