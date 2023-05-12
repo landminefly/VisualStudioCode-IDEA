@@ -20,11 +20,16 @@ public class DijkstraTest {
         System.out.println(Arrays.toString(dijkstra.distance));
         for (int i = 0; i < graph.VCount; i++) {
             int index = i;
-            while (index != 0) {
-                System.out.print(graph.translateIndexToVertex(index) + " <- ");
+            while (index != -1) {
+                if (index == 0) {
+                    //如果到达起始节点了，就无需再打印右箭头了
+                    System.out.print(graph.translateIndexToVertex(index));
+                } else {
+                    System.out.print(graph.translateIndexToVertex(index) + " <- ");
+                }
                 index = dijkstra.preNode[index];
             }
-            System.out.println(graph.translateIndexToVertex(index));
+            System.out.println();
         }
     }
 }
