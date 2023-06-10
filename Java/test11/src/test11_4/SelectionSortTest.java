@@ -35,7 +35,7 @@ class SelectionSort{
                 }
             }
             //如果这次循环中的最小元素不是arr[n]，则交换
-            if(value != i){
+            if(index != i){
                 arr[index] = arr[i];
                 arr[i] = value;
             }
@@ -53,7 +53,7 @@ class SelectionSort{
                     value = arr[j];
                 }
             }
-            if(value != i){
+            if(index != i){
                 arr[index] = arr[i];
                 arr[i] = value;
             }
